@@ -14,10 +14,10 @@ plugins {
     alias(libs.plugins.sonarqube)
 }
 
-group = "io.hexlet"
+group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
-application { mainClass.set("io.hexlet.Application") }
+application { mainClass.set("hexlet.code.App") }
 
 repositories { mavenCentral() }
 

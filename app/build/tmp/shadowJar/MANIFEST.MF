@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: hexlet.code.App
+Multi-Release: true
+
