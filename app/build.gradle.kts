@@ -24,6 +24,7 @@ repositories { mavenCentral() }
 dependencies {
     implementation(libs.commons.lang3)
     implementation(libs.commons.collections4)
+    implementation("info.picocli:picocli:4.7.7")
     // testImplementation(platform(libs.junit.bom))
     // testImplementation(libs.junit.jupiter)
     // testRuntimeOnly(libs.junit.platform.launcher)

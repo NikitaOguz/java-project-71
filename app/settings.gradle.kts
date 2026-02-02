@@ -6,7 +6,7 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-rootProject.name = "java-package"
+rootProject.name = "app"
 
 plugins {
     // See https://jmfayard.github.io/refreshVersions
