@@ -70,7 +70,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\app-1.0-SNAPSHOT.jar;%APP_HOME%\lib\commons-lang3-3.20.0.jar;%APP_HOME%\lib\commons-collections4-4.5.0.jar;%APP_HOME%\lib\picocli-4.7.7.jar
+set CLASSPATH=%APP_HOME%\lib\app-1.0-SNAPSHOT.jar;%APP_HOME%\lib\commons-lang3-3.20.0.jar;%APP_HOME%\lib\commons-collections4-4.5.0.jar;%APP_HOME%\lib\picocli-4.7.7.jar;%APP_HOME%\lib\jackson-annotations-2.12.5.jar;%APP_HOME%\lib\jackson-core-2.12.5.jar;%APP_HOME%\lib\jackson-databind-2.12.5.jar
 
 
 @rem Execute app

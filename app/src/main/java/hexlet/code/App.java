@@ -4,10 +4,11 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-
+import hexlet.code.Differ;
 import java.io.File;
 import java.math.BigInteger;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.util.concurrent.Callable;
 
@@ -15,25 +16,25 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
 
-   @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
-   private File filepath1;
-   @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
-   private File filepath2;
-   @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
-   private String format = "stylish";
+    @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
+    private String filepath1;
+
+    @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
+    private String filepath2;
+
+    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
+    private String format = "stylish";
 
     @Override
     public Integer call() throws Exception { // your business logic goes here...
-     byte[] fileContents = Files.readAllBytes(filepath1.toPath());
-     byte[] digest = MessageDigest.getInstance(format).digest(fileContents);
-     System.out.printf("%0" + (digest.length*2) + "x%n", new BigInteger(1, digest));
+        var differ = Differ.generate(filepath1, filepath2);
+        System.out.println(differ);
         return 0;
     }
-
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {
-        int exitCode = new CommandLine(new App()).execute(args);
+        int exitCode = new CommandLine(new App()).git execute(args);
         System.exit(exitCode);
     }
 }
