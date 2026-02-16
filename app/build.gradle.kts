@@ -5,7 +5,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
 
     application
-    // jacoco
+    jacoco
     alias(libs.plugins.spotless)
     alias(libs.plugins.lombok)
     alias(libs.plugins.shadow)
@@ -34,6 +34,14 @@ testing {
             // Use JUnit Jupiter test framework
             useJUnitJupiter(libs.versions.junit.get())
         }
+    }
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // сначала запустить тесты
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.outputLocation.set(layout.buildDirectory.dir("reports/jacoco"))
     }
 }
 
@@ -91,3 +99,4 @@ sonarqube {
         property("sonar.organization", "nikitoguzkov")
     }
 }
+
