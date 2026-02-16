@@ -3,8 +3,6 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
-    // id("com.github.ben-manes.versions")
-    // id("com.diffplug.spotless")
 
     application
     // jacoco
@@ -12,6 +10,7 @@ plugins {
     alias(libs.plugins.lombok)
     alias(libs.plugins.shadow)
     alias(libs.plugins.sonarqube)
+    `jvm-test-suite`
 }
 
 group = "hexlet.code"
@@ -26,9 +25,6 @@ dependencies {
     implementation(libs.commons.collections4)
     implementation("info.picocli:picocli:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
-    // testImplementation(platform(libs.junit.bom))
-    // testImplementation(libs.junit.jupiter)
-    // testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 testing {
@@ -89,13 +85,9 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-
-// tasks.jacocoTestReport { reports { xml.required.set(true) } }
-
-// sonar {
-//     properties {
-//         property("sonar.projectKey", "hexlet-boilerplates_java-package")
-//         property("sonar.organization", "hexlet-boilerplates")
-//         property("sonar.host.url", "https://sonarcloud.io")
-//     }
-// }
+sonarqube {
+    properties {
+        property("sonar.projectKey", "NikitaOguz_java-project-71")
+        property("sonar.organization", "nikitoguzkov")
+    }
+}
