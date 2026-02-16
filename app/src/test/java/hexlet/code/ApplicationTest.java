@@ -25,7 +25,9 @@ class ApplicationTest {
 
     @Test
     void testMain() {
-        App.main(new String[] {});
+        App.main(new String[]{"src/test/resources/file1.json", "src/test/resources/file2.json"});
+
+        // проверка результата
         assertEquals("Hello, World!", output.toString(StandardCharsets.UTF_8).trim());
     }
 }
