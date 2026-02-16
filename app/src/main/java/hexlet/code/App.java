@@ -1,18 +1,15 @@
 package hexlet.code;
 
+import java.util.concurrent.Callable;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import hexlet.code.Differ;
-import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.MessageDigest;
-import java.util.concurrent.Callable;
 
-@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 4.0",
+@Command(
+        name = "gendiff",
+        mixinStandardHelpOptions = true,
+        version = "gendiff 4.0",
         description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
 
@@ -22,7 +19,10 @@ class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     private String filepath2;
 
-    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
+    @Option(
+            names = {"-f", "--format"},
+            paramLabel = "format",
+            description = "output format [default: stylish]")
     private String format = "stylish";
 
     @Override
@@ -31,6 +31,7 @@ class App implements Callable<Integer> {
         System.out.println(differ);
         return 0;
     }
+
     // this example implements Callable, so parsing, error handling and handling user
     // requests for usage help or version help can be done with one line of code.
     public static void main(String... args) {

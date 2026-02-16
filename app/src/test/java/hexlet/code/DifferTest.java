@@ -1,7 +1,8 @@
 package hexlet.code;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class DifferTest {
 
@@ -11,7 +12,8 @@ public class DifferTest {
         String path1 = "src/test/resources/file1.json";
         String path2 = "src/test/resources/file2.json";
 
-        String expected = """
+        String expected =
+"""
 {
   - follow: false
     host: hexlet.io
@@ -27,4 +29,3 @@ public class DifferTest {
         assertEquals(expected.trim(), actual.trim());
     }
 }
-
