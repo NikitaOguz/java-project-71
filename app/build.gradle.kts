@@ -16,7 +16,7 @@ group = "io.hexlet"
 
 version = "1.0-SNAPSHOT"
 
-application { mainClass.set("io.hexlet.Application") }
+application { mainClass.set("hexlet.code.App") }
 
 repositories { mavenCentral() }
 
@@ -28,9 +28,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.7")
 
     // Jackson для работы с JSON
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.12.5")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.12.5")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
