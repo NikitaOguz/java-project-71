@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class ParserFile {
     public static Map<String, Object> parse(String content, String fileType) throws Exception {
-
         ObjectMapper mapper = new ObjectMapper();
 
         // поддержка JSON
