@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.formats.Plain;
+
 import java.util.*;
 
 public class Differ {
@@ -63,6 +65,7 @@ public class Differ {
                         map2.get(key)
                 ));
             }
+
         }
 
         return result;
@@ -71,7 +74,7 @@ public class Differ {
 
     public static String format(List<DiffNode>diff, String format)
     {
-        return "{}";
+        return Plain.format(diff);
     }
     private static String getFileType(String filepath) {
         return filepath.substring(filepath.lastIndexOf('.') + 1);

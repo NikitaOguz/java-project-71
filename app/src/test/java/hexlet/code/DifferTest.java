@@ -41,5 +41,26 @@ public class DifferTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    void testJsonPlain() throws Exception {
+        var file1 = getPath("file1.json").toString();
+        var file2 = getPath("file2.json").toString();
+        var expected = readFile("expectedPlain.txt");
+
+        var actual = Differ.generate(file1, file2, "plain");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testYamlPlain() throws Exception {
+        var file1 = getPath("file1.yml").toString();
+        var file2 = getPath("file2.yml").toString();
+        var expected = readFile("expectedPlain.txt");
+
+        var actual = Differ.generate(file1, file2, "plain");
+
+        assertEquals(expected, actual);
+    }
 }
 
