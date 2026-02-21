@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DifferTest {
 
@@ -59,6 +60,16 @@ public class DifferTest {
         var expected = readFile("expectedPlain.txt");
 
         var actual = Differ.generate(file1, file2, "plain");
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void testJsonFormat() throws Exception {
+        var file1 = getPath("file1.json").toString();
+        var file2 = getPath("file2.json").toString();
+        var expected = readFile("expectedJson.txt");
+
+        var actual = Differ.generate(file1, file2, "json");
 
         assertEquals(expected, actual);
     }
