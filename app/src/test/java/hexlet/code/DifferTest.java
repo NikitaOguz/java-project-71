@@ -1,48 +1,45 @@
 package hexlet.code;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    @Test
-    public void testFlatJsonDiff() throws Exception {
-        String path1 = "src/test/resources/file1.json";
-        String path2 = "src/test/resources/file2.json";
-
-        String expected = """
-                {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
-                }
-                """;
-
-        String actual = Differ.generate(path1, path2);
-        assertEquals(expected.trim(), actual.trim());
+    private static Path getPath(String file) {
+        return Paths.get("src/test/resources", file)
+                .toAbsolutePath()
+                .normalize();
     }
+
+    private static String readFile(String file) throws Exception {
+        return Files.readString(getPath(file)).trim();
+    }
+
     @Test
-    public void testFlatYamlDiff() throws Exception {
-        String yml1 = "src/test/resources/file1.yaml";
-        String yml2 = "src/test/resources/file2.yaml";
+    void testJsonStylish() throws Exception {
+        var file1 = getPath("file1.json").toString();
+        var file2 = getPath("file2.json").toString();
+        var expected = readFile("expectedStylish.txt");
 
+        var actual = Differ.generate(file1, file2, "stylish");
 
-        String expected = """
-                {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
-                }
-                """;
-        String actual = Differ.generate(yml1, yml2);
-        assertEquals(expected.trim(), actual.trim());
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testYamlStylish() throws Exception {
+        var file1 = getPath("file1.yml").toString();
+        var file2 = getPath("file2.yml").toString();
+        var expected = readFile("expectedStylish.txt");
+
+        var actual = Differ.generate(file1, file2, "stylish");
+
+        assertEquals(expected, actual);
     }
 }
 
