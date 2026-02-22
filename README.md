@@ -4,6 +4,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NikitaOguz_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=NikitaOguz_java-project-71)
 
 Проект модуля #2
+
 Вычислитель отличий
 
 Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. Это популярная задача, для решения которой существует множество онлайн-сервисов, например: http://www.jsondiff.com/. Подобный механизм используется при выводе тестов или при автоматическом отслеживании изменении в конфигурационных файлах.
