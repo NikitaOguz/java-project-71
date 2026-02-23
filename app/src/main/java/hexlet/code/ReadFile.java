@@ -6,17 +6,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ReadFile {
+
     public static String read(String filepath) throws IOException {
 
-        // Преобразуем строку пути в Path
-        Path path = Paths.get(filepath).toAbsolutePath().normalize();
+        Path path = Paths.get(filepath);
 
-        // Проверка существования файла
-        if (!Files.exists(path)) {
-            throw new IOException("File not found: " + path);
+        if (Files.exists(path)) {
+            return Files.readString(path.toAbsolutePath().normalize());
         }
 
-        // Читаем содержимое файла в строку
-        return Files.readString(path);
+        Path testPath = Paths.get("src/test/resources", filepath);
+
+        if (Files.exists(testPath)) {
+            return Files.readString(testPath.toAbsolutePath().normalize());
+        }
+
+        throw new IOException("File not found: " + filepath);
     }
 }

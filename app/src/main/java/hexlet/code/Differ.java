@@ -2,7 +2,13 @@ package hexlet.code;
 
 import hexlet.code.formats.Plain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+
 
 public class Differ {
 
@@ -24,7 +30,6 @@ public class Differ {
 
     public static List<DiffNode> compare(Map<String, Object> map1,
                                          Map<String, Object> map2) {
-
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());
         keys.addAll(map2.keySet());
@@ -72,8 +77,7 @@ public class Differ {
     }
 
 
-    public static String format(List<DiffNode>diff, String format)
-    {
+    public static String format(List<DiffNode> diff, String format)  {
         return Plain.format(diff);
     }
     private static String getFileType(String filepath) {

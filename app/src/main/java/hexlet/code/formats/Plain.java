@@ -41,6 +41,7 @@ public class Plain {
                 case UNCHANGED -> {
                     // ничего не выводим
                 }
+                default -> throw new IllegalStateException("Unexpected status: " + node.status());
             }
         }
 
