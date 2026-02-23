@@ -43,7 +43,9 @@ public class Stylish {
                             .append(node.newValue())
                             .append("\n");
                 }
+                default -> throw new IllegalStateException("Unexpected status: " + node.status());
             }
+
         }
 
         sb.append("}");
