@@ -23,18 +23,12 @@ repositories { mavenCentral() }
 dependencies {
     implementation("org.apache.commons:commons-lang3:3.14.0")
     implementation("org.apache.commons:commons-collections4:4.4")
-
-    // Picocli для CLI
     implementation("info.picocli:picocli:4.7.7")
-
-    // Jackson для работы с JSON
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
-    annotationProcessor("info.picocli:picocli-codegen:4.7.7")
 }
 
 tasks.test {
