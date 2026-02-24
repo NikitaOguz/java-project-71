@@ -9,6 +9,6 @@ public class Json {
 
     public static String format(List<DiffNode> nodes) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(nodes);
+        return mapper.writeValueAsString(nodes);
     }
 }
