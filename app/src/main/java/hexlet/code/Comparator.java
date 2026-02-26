@@ -1,47 +1,53 @@
 package hexlet.code;
-import java.util.Map;
-import java.util.TreeSet;
-import java.util.Set;
+
+import java.util.*;
 
 public class Comparator {
 
-    public static String compare(Map<String, Object> map1, Map<String, Object> map2) {
+    public static List<DiffNode> compare(Map<String, Object> map1,
+                                         Map<String, Object> map2) {
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());
         keys.addAll(map2.keySet());
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\n");
+        List<DiffNode> result = new ArrayList<>();
 
         for (String key : keys) {
 
-            boolean inFirst = map1.containsKey(key);
-            boolean inSecond = map2.containsKey(key);
+            if (!map1.containsKey(key)) {
+                result.add(new DiffNode(
+                        key,
+                        Status.ADDED,
+                        null,
+                        map2.get(key)
+                ));
 
-            Object value1 = map1.get(key);
-            Object value2 = map2.get(key);
+            } else if (!map2.containsKey(key)) {
+                result.add(new DiffNode(
+                        key,
+                        Status.REMOVED,
+                        map1.get(key),
+                        null
+                ));
 
-            // удалён
-            if (inFirst && !inSecond) {
-                sb.append(String.format("  - %s: %s\n", key, value1));
+            } else if (!Objects.equals(map1.get(key), map2.get(key))) {
+                result.add(new DiffNode(
+                        key,
+                        Status.CHANGED,
+                        map1.get(key),
+                        map2.get(key)
+                ));
 
-                // добавлен
-            } else if (!inFirst && inSecond) {
-                sb.append(String.format("  + %s: %s\n", key, value2));
-
-                // изменён
-            } else if (!value1.equals(value2)) {
-                sb.append(String.format("  - %s: %s\n", key, value1));
-                sb.append(String.format("  + %s: %s\n", key, value2));
-
-                // без изменений
             } else {
-                sb.append(String.format("    %s: %s\n", key, value1));
+                result.add(new DiffNode(
+                        key,
+                        Status.UNCHANGED,
+                        map1.get(key),
+                        map2.get(key)
+                ));
             }
         }
-
-        sb.append("}");
-        return sb.toString();
+        return result;
     }
 }

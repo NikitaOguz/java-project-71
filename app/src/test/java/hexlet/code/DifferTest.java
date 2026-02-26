@@ -42,6 +42,16 @@ public class DifferTest {
         assertEquals(expected, actual);
     }
     @Test
+    void testYamlJson() throws Exception {
+        var file1 = getPath("file1.yml").toString();
+        var file2 = getPath("file2.yml").toString();
+        var expected = readFile("expectedJson.txt");
+
+        var actual = Differ.generate(file1, file2, "json");
+
+        assertEquals(expected, actual);
+    }
+    @Test
     void testJsonPlain() throws Exception {
         var file1 = getPath("file1.json").toString();
         var file2 = getPath("file2.json").toString();
@@ -69,6 +79,27 @@ public class DifferTest {
         var expected = readFile("expectedJson.txt");
 
         var actual = Differ.generate(file1, file2, "json");
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void testJsonDefault() throws Exception {
+        var file1 = getPath("file1.json").toString();
+        var file2 = getPath("file2.json").toString();
+        var expected = readFile("expectedStylish.txt");
+
+        var actual = Differ.generate(file1, file2);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testYamlDefault() throws Exception {
+        var file1 = getPath("file1.yml").toString();
+        var file2 = getPath("file2.yml").toString();
+        var expected = readFile("expectedStylish.txt");
+
+        var actual = Differ.generate(file1, file2);
 
         assertEquals(expected, actual);
     }

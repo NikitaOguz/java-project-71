@@ -7,15 +7,15 @@ import java.util.Map;
 
 public class ParserFile {
 
-    public static Map parse(String content, String fileType) throws Exception {
+    public static Map<String, Object> parse(String content, String format) throws Exception {
         ObjectMapper mapper;
 
-        if (fileType.equals("json")) {
+        if ("json".equals(format)) {
             mapper = new ObjectMapper();
-        } else if (fileType.equals("yml") || fileType.equals("yaml")) {
+        } else if ("yml".equals(format) || "yaml".equals(format)) {
             mapper = new ObjectMapper(new YAMLFactory());
         } else {
-            throw new IllegalArgumentException("Unsupported file type: " + fileType);
+            throw new IllegalArgumentException("Unsupported format: " + format);
         }
 
         return mapper.readValue(content, Map.class);

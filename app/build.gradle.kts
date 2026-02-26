@@ -12,8 +12,7 @@ plugins {
     id("org.sonarqube") version "6.0.1.5171"
 }
 
-group = "io.hexlet"
-
+group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
 application { mainClass.set("hexlet.code.App") }
@@ -21,24 +20,24 @@ application { mainClass.set("hexlet.code.App") }
 repositories { mavenCentral() }
 
 dependencies {
+    // Основные библиотеки проекта
     implementation("org.apache.commons:commons-lang3:3.14.0")
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("info.picocli:picocli:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.0")
 
+    // JUnit 5
     testImplementation(platform("org.junit:junit-bom:5.10.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher") // ← ВОТ ЭТО ДОБАВЬ
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.1")
 }
 
 tasks.test {
     useJUnitPlatform()
     testLogging {
         exceptionFormat = TestExceptionFormat.FULL
-        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
-        // showStackTraces = true
-        // showCauses = true
+        events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
         showStandardStreams = true
     }
 }
