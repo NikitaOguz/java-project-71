@@ -1,7 +1,5 @@
 package hexlet.code;
 import java.util.Map;
-
-
 public class Differ {
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
