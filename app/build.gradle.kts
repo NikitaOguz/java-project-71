@@ -51,14 +51,6 @@ sonarqube {
         property("sonar.organization", "nikitoguzkov")
     }
 }
-tasks.named("installDist") {
-    enabled = false
-}
-
-tasks.named("installShadowDist") {
-    enabled = false
-}
-
 tasks.register("install") {
     dependsOn("installDist")
 }
