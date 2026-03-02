@@ -44,11 +44,16 @@ tasks.test {
 
 tasks.jacocoTestReport { reports { xml.required.set(true) } }
 
-// Конфигурация плагина org.sonarqube
 sonarqube {
     properties {
         property("sonar.projectKey", "NikitaOguz_java-project-71")
         property("sonar.organization", "nikitoguzkov")
+        property("sonar.host.url", "https://sonarcloud.io")
+
+        property(
+            "sonar.coverage.jacoco.xmlReportPaths",
+            "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        )
     }
 }
 tasks.register("install") {
