@@ -3,11 +3,9 @@ package hexlet.code.formats;
 import hexlet.code.DiffNode;
 
 import java.util.List;
-import java.util.Map;
 
 import java.util.StringJoiner;
 
-import hexlet.code.Status;
 
 public class Stylish {
 
@@ -41,11 +39,13 @@ public class Stylish {
     }
 
     private static String stringify(Object value) {
-        if (value == null) return "null";
-
+        if (value == null) {
+            return "null";
+        }
         // Строки оборачиваем в кавычки
-        if (value instanceof String) return value.toString();
-
+        if (value instanceof String) {
+            return value.toString();
+        }
         // Map и List оставляем через toString(), чтобы Stylish показывал полное содержимое
         return value.toString();
     }
