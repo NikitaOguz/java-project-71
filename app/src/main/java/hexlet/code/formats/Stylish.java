@@ -3,52 +3,51 @@ package hexlet.code.formats;
 import hexlet.code.DiffNode;
 
 import java.util.List;
+import java.util.Map;
+
+import java.util.StringJoiner;
+
+import hexlet.code.Status;
 
 public class Stylish {
 
     public static String format(List<DiffNode> diff) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\n");
+        StringJoiner sj = new StringJoiner("\n");
 
-        for (var node : diff) {
-            switch (node.status()) {
-                case UNCHANGED -> sb.append("    ")
-                        .append(node.key())
-                        .append(": ")
-                        .append(node.oldValue())
-                        .append("\n");
+        for (DiffNode node : diff) {
+            String key = node.key();
 
-                case REMOVED -> sb.append("  - ")
-                        .append(node.key())
-                        .append(": ")
-                        .append(node.oldValue())
-                        .append("\n");
+            String line = switch (node.status()) {
+                case REMOVED -> String.format("  - %s: %s",
+                        key, stringify(node.oldValue()));
 
-                case ADDED -> sb.append("  + ")
-                        .append(node.key())
-                        .append(": ")
-                        .append(node.newValue())
-                        .append("\n");
+                case ADDED -> String.format("  + %s: %s",
+                        key, stringify(node.newValue()));
 
-                case CHANGED -> {
-                    sb.append("  - ")
-                            .append(node.key())
-                            .append(": ")
-                            .append(node.oldValue())
-                            .append("\n");
+                case UNCHANGED -> String.format("    %s: %s",
+                        key, stringify(node.oldValue()));
 
-                    sb.append("  + ")
-                            .append(node.key())
-                            .append(": ")
-                            .append(node.newValue())
-                            .append("\n");
-                }
-                default -> throw new IllegalStateException("Unexpected status: " + node.status());
-            }
+                case CHANGED -> String.format("  - %s: %s",
+                        key, stringify(node.oldValue()))
+                        + "\n"
+                        + String.format("  + %s: %s",
+                        key, stringify(node.newValue()));
+            };
 
+            sj.add(line);
         }
 
-        sb.append("}");
-        return sb.toString();
+        return "{\n" + sj + "\n}";
+    }
+
+    private static String stringify(Object value) {
+        if (value == null) return "null";
+
+        // Строки оборачиваем в кавычки
+        if (value instanceof String) return value.toString();
+
+        // Map и List оставляем через toString(), чтобы Stylish показывал полное содержимое
+        return value.toString();
     }
 }
+

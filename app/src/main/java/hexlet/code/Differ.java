@@ -16,7 +16,9 @@ public class Differ {
         Map<String, Object> map2 = Parser.parse(content2, format2);
 
         var diff = Comparator.compare(map1, map2);
-        return Formatter.format(diff, format);
+        return Formatter.format(diff, format)
+                .replace("\r\n", "\n")
+                .trim();
     }
 
     public static String generate(String path1, String path2) throws Exception {

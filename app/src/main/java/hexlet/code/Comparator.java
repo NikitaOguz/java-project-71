@@ -9,50 +9,45 @@ import java.util.ArrayList;
 
 public class Comparator {
 
-    public static List<DiffNode> compare(Map<String, Object> map1,
-                                         Map<String, Object> map2) {
+    public static List<DiffNode> compare(Map<String, Object> map1, Map<String, Object> map2) {
+        List<DiffNode> diffList = new ArrayList<>();
 
+        // Собираем все ключи и сортируем их
         Set<String> keys = new TreeSet<>();
         keys.addAll(map1.keySet());
         keys.addAll(map2.keySet());
 
-        List<DiffNode> result = new ArrayList<>();
-
         for (String key : keys) {
+            boolean inFirst = map1.containsKey(key);
+            boolean inSecond = map2.containsKey(key);
+            Object val1 = map1.get(key);
+            Object val2 = map2.get(key);
 
-            if (!map1.containsKey(key)) {
-                result.add(new DiffNode(
-                        key,
-                        Status.ADDED,
-                        null,
-                        map2.get(key)
-                ));
+            Status status;
+            Object oldValue = null;
+            Object newValue = null;
 
-            } else if (!map2.containsKey(key)) {
-                result.add(new DiffNode(
-                        key,
-                        Status.REMOVED,
-                        map1.get(key),
-                        null
-                ));
-
-            } else if (!Objects.equals(map1.get(key), map2.get(key))) {
-                result.add(new DiffNode(
-                        key,
-                        Status.CHANGED,
-                        map1.get(key),
-                        map2.get(key)
-                ));
-
-            } else {
-                result.add(new DiffNode(
-                        key,
-                        Status.UNCHANGED,
-                        map1.get(key),
-                        map2.get(key)
-                ));
+            if (inFirst && !inSecond) {
+                status = Status.REMOVED;
+                oldValue = val1;
+            } else if (!inFirst && inSecond) {
+                status = Status.ADDED;
+                newValue = val2;
+            } else { // ключ есть в обеих
+                if (Objects.equals(val1, val2)) {
+                    status = Status.UNCHANGED;
+                    oldValue = val1;
+                    newValue = val2;
+                } else {
+                    status = Status.CHANGED;
+                    oldValue = val1;
+                    newValue = val2;
+                }
             }
+
+            diffList.add(new DiffNode(key, status, oldValue, newValue));
         }
-        return result;
+
+        return diffList;
     }
 }
