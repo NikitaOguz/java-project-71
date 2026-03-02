@@ -5,22 +5,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ReadFile {
+public class Read {
 
-    public static String read(String filepath) throws IOException {
+    public static String read(String pathToResource) throws IOException {
 
-        Path path = Paths.get(filepath);
+        Path path = Paths.get(pathToResource);
 
         if (Files.exists(path)) {
             return Files.readString(path.toAbsolutePath().normalize());
         }
 
-        Path testPath = Paths.get("src/test/resources", filepath);
+        Path testPath = Paths.get("src/test/resources", pathToResource);
 
         if (Files.exists(testPath)) {
             return Files.readString(testPath.toAbsolutePath().normalize());
         }
 
-        throw new IOException("File not found: " + filepath);
+        throw new IOException("File not found: " + pathToResource);
     }
 }
