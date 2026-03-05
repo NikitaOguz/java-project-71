@@ -37,7 +37,6 @@ http://www.jsondiff.com/
 
 ## Сравнение JSON файлов
 
-```bash
 ./build/install/app/bin/app file1.json file2.json
 
 <img width="538" height="582" alt="image" src="https://github.com/user-attachments/assets/09298ea2-3fdf-4e65-a1c5-c52e4513793e" />
