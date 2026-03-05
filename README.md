@@ -1,23 +1,43 @@
-### Hexlet tests and linter status:
+# Hexlet tests and linter status
+
 [![Actions Status](https://github.com/NikitaOguz/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/NikitaOguz/java-project-71/actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NikitaOguz_java-project-71&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NikitaOguz_java-project-71)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NikitaOguz_java-project-71&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NikitaOguz_java-project-71)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=NikitaOguz_java-project-71&metric=coverage)](https://sonarcloud.io/summary/new_code?id=NikitaOguz_java-project-71)
 
-Проект модуля #2
+# Проект модуля №2
 
-Вычислитель отличий
+## Вычислитель отличий
 
-Вычислитель отличий – программа, определяющая разницу между двумя структурами данных. Это популярная задача, для решения которой существует множество онлайн-сервисов, например: http://www.jsondiff.com/. Подобный механизм используется при выводе тестов или при автоматическом отслеживании изменении в конфигурационных файлах.
+**Вычислитель отличий** — программа, определяющая разницу между двумя структурами данных.
 
-Возможности утилиты:
+Это популярная задача, для решения которой существует множество онлайн-сервисов, например:
 
-Поддержка разных входных форматов: yaml и json
-Генерация отчета в виде plain text, stylish и json
-Пример использования:
+http://www.jsondiff.com/
 
-Сравнение плоских файлов (JSON):
+Подобный механизм используется при:
 
+- выводе тестов
+- автоматическом отслеживании изменений
+- сравнении конфигурационных файлов
+
+---
+
+# Возможности утилиты
+
+- Поддержка входных форматов **JSON** и **YAML**
+- Генерация отчета в форматах:
+  - `stylish`
+  - `plain`
+  - `json`
+
+---
+
+# Пример использования
+
+## Сравнение JSON файлов
+
+```bash
 ./build/install/app/bin/app file1.json file2.json
 
 <img width="538" height="582" alt="image" src="https://github.com/user-attachments/assets/09298ea2-3fdf-4e65-a1c5-c52e4513793e" />
