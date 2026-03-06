@@ -28,10 +28,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2, "stylish");
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -42,11 +39,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2, "stylish");
 
-        // нормализуем переносы строк
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
     @Test
     void testYamlJson() throws Exception {
@@ -55,10 +48,7 @@ public class DifferTest {
         var expected = readFile("expectedJson.txt");
 
         var actual = Differ.generate(file1, file2, "json");
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
     @Test
     void testJsonPlain() throws Exception {
@@ -68,10 +58,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2, "plain");
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -82,10 +69,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2, "plain");
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
     @Test
     void testJsonFormat() throws Exception {
@@ -95,10 +79,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2, "json");
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
     @Test
     void testJsonDefault() throws Exception {
@@ -108,10 +89,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2);
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -122,10 +100,7 @@ public class DifferTest {
 
         var actual = Differ.generate(file1, file2);
 
-        String expectedNormalized = expected.replace("\r\n", "\n").trim();
-        String actualNormalized = actual.replace("\r\n", "\n").trim();
-
-        assertEquals(expectedNormalized, actualNormalized);
+        assertEquals(expected, actual);
     }
 }
 
