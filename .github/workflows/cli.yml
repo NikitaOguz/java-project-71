@@ -23,11 +23,16 @@ jobs:
           java-version: 21
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build project
         run: ./gradlew build
 
       - name: Generate coverage report
         run: make report
+
+      - name: SonarCloud analysis
+        run: ./gradlew sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         
