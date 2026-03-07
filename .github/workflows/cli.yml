@@ -28,7 +28,7 @@ jobs:
         working-directory: app
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@2f6a4f1a1a0d6a4e0e71a5e6d4c9e3e1c9e4a8c5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
