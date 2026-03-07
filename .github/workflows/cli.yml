@@ -30,16 +30,4 @@ jobs:
 
       - name: Generate coverage report
         run: make report
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Run SonarCloud analysis
-        run: ./gradlew sonar
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+        
